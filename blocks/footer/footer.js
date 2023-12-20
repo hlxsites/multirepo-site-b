@@ -11,8 +11,10 @@ export default async function decorate(block) {
 
   // load footer fragment
   const path = window.location.pathname.split('/');
-  const site = path.includes('site-a') ? 'site-a' : 'site-b';
-  const footerPath = footerMeta.footer || `/${site}/footer`;
+  let site = '';
+  if (path.includes('site-a')) site = '/site-a';
+  if (path.includes('site-b')) site = '/site-b';
+  const footerPath = footerMeta.footer || `${site}/footer`;
   const fragment = await loadFragment(footerPath);
 
   // decorate footer DOM

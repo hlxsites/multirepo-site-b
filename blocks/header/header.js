@@ -94,8 +94,10 @@ export default async function decorate(block) {
   // load nav as fragment
   const navMeta = getMetadata('nav');
   const path = window.location.pathname.split('/');
-  const site = path.includes('site-a') ? 'site-a' : 'site-b';
-  const navPath = navMeta ? new URL(navMeta).pathname : `/${site}/nav`;
+  let site = '';
+  if (path.includes('site-a')) site = '/site-a';
+  if (path.includes('site-b')) site = '/site-b';
+  const navPath = navMeta ? new URL(navMeta).pathname : `${site}/nav`;
   const fragment = await loadFragment(navPath);
 
   // decorate nav DOM

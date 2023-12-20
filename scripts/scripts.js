@@ -75,9 +75,10 @@ export function decorateMain(main) {
  */
 async function loadEager(doc) {
   const path = window.location.pathname.split('/');
-  if (path.includes('site-a')) {
+  const repo = window.location.hostname.split('--');
+  if (path.includes('site-a') || repo.includes('multirepo-site-a')) {
     loadCSS(`${window.hlx.codeBasePath}/styles/tokens/site-a.css`);
-  } else if (path.includes('site-b')) {
+  } else if (path.includes('site-b') || repo.includes('multirepo-site-b')) {
     loadCSS(`${window.hlx.codeBasePath}/styles/tokens/site-b.css`);
   }
 
