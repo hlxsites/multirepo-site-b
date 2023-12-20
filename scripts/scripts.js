@@ -74,6 +74,13 @@ export function decorateMain(main) {
  * @param {Element} doc The container element
  */
 async function loadEager(doc) {
+  const path = window.location.pathname.split('/');
+  if (path.includes('site-a')) {
+    loadCSS(`${window.hlx.codeBasePath}/styles/tokens/site-a.css`);
+  } else if (path.includes('site-b')) {
+    loadCSS(`${window.hlx.codeBasePath}/styles/tokens/site-b.css`);
+  }
+
   document.documentElement.lang = 'en';
   decorateTemplateAndTheme();
   const main = doc.querySelector('main');
